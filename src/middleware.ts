@@ -12,7 +12,8 @@ export async function middleware(request: NextRequest) {
     (url.pathname.startsWith("/sign-in") ||
       url.pathname.startsWith("/sign-up") ||
       url.pathname.startsWith("/verify") ||
-      url.pathname.startsWith("/error"))
+      url.pathname.startsWith("/error") ||
+      url.pathname.startsWith("/forgot-password"))
   ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
@@ -35,6 +36,7 @@ export const config = {
     "/",
     "/sign-in",
     "/sign-up",
+    "/forgot-password",
     "/verify/:path*",
     "/protected/:path*",
     "/error/:path*",
