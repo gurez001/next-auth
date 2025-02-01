@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/dbConfig/dbConfig";
 import { OTPModel } from "@/models/otpModel";
 import { OTPGenerator } from "@/utils/otpGenerator";
+import { sendVerificationEmail } from "@/lib/mail";
 export async function POST(req: Request) {
   try {
     await dbConnect();
@@ -17,6 +18,12 @@ export async function POST(req: Request) {
       otpCode: Number(otp),
     };
     await OTPModel.create(otpdata);
+    // Resend OTP email
+    await sendVerificationEmail(
+      OtpToken.email,
+      OtpToken.verifyToken,
+      Number(otp)
+    );
     return NextResponse.json(
       { message: "OTP resend successfully." },
       { status: 201 }
