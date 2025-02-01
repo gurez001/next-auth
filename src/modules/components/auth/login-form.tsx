@@ -34,7 +34,6 @@ export function LoginForm({
       password: target.password.value,
       redirect: false,
     });
-    console.log(result);
     setIsLoading(false);
 
     if (result?.error) {

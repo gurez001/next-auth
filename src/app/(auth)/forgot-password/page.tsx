@@ -15,7 +15,6 @@ export default function ForgotPasswordPage() {
     const [email, setEmail] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
-    console.log(email)
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true)
@@ -35,7 +34,6 @@ export default function ForgotPasswordPage() {
                 })
             } else {
                 const data = await response.json()
-                console.log(data)
                 toast({
                     title: "Error",
                     description: data.message || "Something went wrong",

@@ -38,9 +38,7 @@ async function findOrCreateUser(profile: SocialProfile, provider: string) {
     });
     try {
       await user.save();
-      console.log("New user created", user);
     } catch (error) {
-      console.error("Error creating user:", error);
       throw new Error("FailedToCreateAccount");
     }
   } else {
